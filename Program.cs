@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using PasswordManager;
 using PasswordManager.Models;
+Class1 class1 = new();
 
 var builder = WebApplication.CreateBuilder(args);
 

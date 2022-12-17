@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PasswordManager.Controllers.Service.Cryptography;
 using PasswordManager.Models;
 
 namespace PasswordManager.Views.Accounts
@@ -60,6 +56,9 @@ namespace PasswordManager.Views.Accounts
         {
             if (ModelState.IsValid)
             {
+                Encryption encryption = new(); // BY SERVICE
+                accountModel.Password = encryption.StartProcessOfEncryption(accountModel.Password);
+
                 _context.Add(accountModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
