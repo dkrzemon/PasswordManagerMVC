@@ -1,0 +1,22 @@
+﻿@model PasswordManager.Models.AccountModel
+
+@{
+	ViewData["Title"] = "Decrypted Password";
+}
+
+<dl class="row">
+	<dt class="col-sm-2">
+		@Html.DisplayNameFor(model => model.Password)
+	</dt>
+	<dd class="col-sm-10">
+		@Html.DisplayFor(model => model.Password)
+	</dd>
+	<dt class="col-sm-2">
+		PasswordDecrypted
+	</dt>
+	<dd class="col-sm-10">
+		@ViewBag.DecryptedPassword
+	</dd>
+</dl>
+
+<h4>H4 just for show. This site will not be visiable in the future.</h4>

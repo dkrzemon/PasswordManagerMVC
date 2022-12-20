@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PasswordManager.Controllers.Service.Cryptography;
 using PasswordManager.Models;
+using PasswordManager.Service.Cryptography.Decrypt;
+using PasswordManager.Service.Cryptography.Encrypt;
 
 namespace PasswordManager.Views.Accounts
 {
@@ -158,5 +159,26 @@ namespace PasswordManager.Views.Accounts
         {
             return (_context.AccountModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-    }
+
+		//EXTRA
+		public async Task<IActionResult> ShowResultOfDecryption(int? id)
+        {
+            if (id == null || _context.AccountModel == null)
+			{
+				return NotFound();
+			}
+
+			var accountModel = await _context.AccountModel
+				.FirstOrDefaultAsync(m => m.Id == id);
+			if (accountModel == null)
+			{
+				return NotFound();
+			}
+
+			Decryption decryption = new();
+			ViewBag.DecryptedPassword = decryption.StartProcessOfDecryption(accountModel.Password);
+
+			return View(accountModel);
+		}
+	}
 }

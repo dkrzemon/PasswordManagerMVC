@@ -1,5 +1,6 @@
-﻿@model PasswordManager.Models.AccountModel
+﻿@using Microsoft.AspNetCore.Http
 
+@model PasswordManager.Models.AccountModel
 @{
 	ViewData["Title"] = "Details";
 }
@@ -26,6 +27,7 @@
 			@Html.DisplayNameFor(model => model.Password)
 		</dt>
 		<dd class="col-sm-10">
+			|<a style="text-decoration: none; color: red;" asp-action="ShowResultOfDecryption" asp-route-id="@Model.Id">Decrypt</a>|
 			@Html.DisplayFor(model => model.Password)
 		</dd>
 		<dt class="col-sm-2">
