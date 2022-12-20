@@ -51,7 +51,7 @@ namespace PasswordManager.Service.Cryptography.Decrypt
                 OrderOfKeys.Add(CheckTypeOfKey(ListToDecryptionInteger[i]));
             }
 
-            string temp; //as OrderOfKeys[x] in normal string (thank to switch, which dont want accept List<string>[x])
+            string temp; //as OrderOfKeys[x] in normal string (thank to switch, which want accept List<string>[x])
 
             for (int i = 0; i < OrderOfKeys.Count; i++)
             {
